@@ -52,13 +52,46 @@ const dmMono = DM_Mono({
   ],
 });
 
+// ============================================================
+//  OPSP BRANDING — CHANGE START
+// ============================================================
+const APP_TITLE = "OPSP — AI Enterprise Search by OpsPilotLab";
+const APP_DESCRIPTION =
+  "OPSP by OpsPilotLab — Secure, AI-powered enterprise search for modern teams. Search across all your apps with privacy.";
+// ============================================================
+//  OPSP BRANDING — CHANGE END
+// ============================================================
+
 // force-dynamic prevents Next.js from statically prerendering pages at build
 // time — many child routes use cookies() which requires dynamic rendering.
 export const dynamic = "force-dynamic";
 
+// ============================================================
+//  OPSP BRANDING — METADATA UPDATE
+// ============================================================
 export async function generateMetadata(): Promise<Metadata> {
-  return { icons: await generateFaviconMetadata() };
+  const icons = await generateFaviconMetadata();
+
+  return {
+    title: APP_TITLE,
+    description: APP_DESCRIPTION,
+    icons,
+    openGraph: {
+      title: APP_TITLE,
+      description: APP_DESCRIPTION,
+      siteName: "OpsPilotLab",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: APP_TITLE,
+      description: APP_DESCRIPTION,
+    },
+  };
 }
+// ============================================================
+//  OPSP BRANDING — METADATA END
+// ============================================================
 
 interface LayoutProps {
   children: React.ReactNode;
